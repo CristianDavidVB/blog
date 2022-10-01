@@ -39,6 +39,12 @@ class ArticlesController < ApplicationController
     else 
       render :edit, status: :unprocessable_entity
     end
+
+    def destroy #Eliminar
+      @article = Article.find(params[:id])
+      @article.destroy
+
+      redirect_to root_path, status: :see_other
   end
 
   private # Privado
