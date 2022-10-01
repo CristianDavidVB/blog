@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 
   # Crear
   def create
-    @article = Article.new (title:"...", body: "...")
+    @article = Article.new(article_params)
 
     if @article.save 
       redirect_to @article
@@ -27,6 +27,10 @@ class ArticlesController < ApplicationController
     end
   end # Fin del metodo create
 
+  private # Privado
+    def article_params
+      params.require(:article).permit(:title, :body)
+    end
 end # Fin del programa
 
 
