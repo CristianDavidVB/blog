@@ -27,6 +27,20 @@ class ArticlesController < ApplicationController
     end
   end # Fin del metodo create
 
+  def edit #Modificar 
+    @article = Article.find(params[:id])
+  end
+
+  def update #Agregar
+    @article = Article.find(params[:id])
+    
+    if @article.update(article_params)
+      redirect_to @article
+    else 
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private # Privado
     def article_params
       params.require(:article).permit(:title, :body)
