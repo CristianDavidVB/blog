@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
   def index
     #Se hace el llamado de todos los datos de articles
     @articles = Article.all
@@ -49,8 +51,9 @@ class ArticlesController < ApplicationController
 
   private # Privado
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
-end # Fin del programa
+  end 
+end #fin del programa
 
 
